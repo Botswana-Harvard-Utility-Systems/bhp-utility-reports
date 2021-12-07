@@ -1,0 +1,114 @@
+{% extends listboard_base_template %}
+
+{% load edc_dashboard_extras %}
+{% load tz %}
+{% load static %}
+{% load edc_base_extras %}
+{% load bhp_utility_reports_extras %}
+
+
+{% block main %}
+<!-- start listboard main block-->
+{% block extra_content%}
+{% endblock extra_content %}
+<div class="panel-group">
+<div class="panel panel-{{ listboard_panel_style }}">
+<div class="panel-heading">
+
+<i class="{{ listboard_fa_icon }} fa-2x"></i>
+                    
+<!-- begin search form -->
+<span class="pull-right">
+    {% block listboard_search_form %}
+        {% include './components/header_form.html' %}
+    {% endblock listboard_search_form %}
+</span>
+<!-- end search form -->
+
+{% block listboard_panel %}
+{% endblock listboard_panel %}
+
+</div> <!--end panel heading -->
+
+
+<!-- begin table -->
+<div class="table table-responsive">
+<table class="table table-condensed table-hover small">
+<thead>
+
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Department</th>
+    <th>Status</th>
+    <th>Date Submitted</th>
+    <th>Total Hours</th>
+    <th style="text-align: left;">Overtime</th>
+    <th>Annual Leave Taken</th>
+    <th>Sick Leave Taken</th>
+    <th>Study Leave Taken</th>
+    <th>Compasionate Leave Taken</th>
+    <th>Maternity Leave Taken</th>
+    <th>Paternity Leave Taken</th>
+
+
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+</thead><tbody>
+
+{% block listboard_table_body %}
+
+    {% for result in results %}
+        <tr> 
+        
+        <td>{{ forloop.counter }}</td>
+        
+        {% block listboard_table_button_column %}
+        {% endblock listboard_table_button_column %}
+    
+        {% block listboard_table_columns %}
+            <td>{{ result.first_name }}</td>
+            <td>{{ result.last_name  }}</td>
+            <td>{{ result.department_name }}</td>
+            <td>{{ result.status | title }} </td>
+            <td>{{ result.date_submitted  }}</td>
+            <td>{{ result.total_hours }}</td>
+            <td style='text-align: center;'>{{ result.overtime }}</td>
+            <td style='text-align: center;'>{{ result.annual_leave_taken }}</td>
+            <td style='text-align: center;'>{{ result.sick_leave_taken }}</td>
+            <td style='text-align: center;'>{{ result.study_leave_taken }}</td>
+            <td style='text-align: center;'>{{ result.compassionate_leave_taken }}</td>
+            <td style='text-align: center;'>{{ result.maternity_leave_taken }}</td>
+            <td style='text-align: center;'>{{ result.sick_leave_taken }}</td>
+        {% endblock listboard_table_columns %}
+
+        </tr>                       
+    
+    {% endfor %}
+
+{% endblock listboard_table_body %}
+
+</tbody></table>
+
+<!-- begin spacer rows -->
+<table>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- end spacer rows -->
+
+</div><!-- end table -->
+
+{% comment %} {% paginator_row %} {% endcomment %}
+{% page_number_row %}
+
+</div>  <!--end panel -->
+</div> <!--end panel-group -->
+<!-- end listboard main block -->
+{% endblock main %}

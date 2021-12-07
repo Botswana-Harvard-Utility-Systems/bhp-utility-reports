@@ -1,0 +1,70 @@
+<!--start searchform-->
+<span class="pull-right">
+	<form  action="{% if search_form_url_reversed %}{{ search_form_url_reversed }}{% endif %}" class="form-inline" id="form-search" method="get" >
+        <div class="form-group" >
+            <div class="controls ">
+				<label for="department">Department</label>
+				<select name="department">
+					<option value="all" >All</option>
+					{% for department in departments %}
+
+						{% if last_selected_department == department.0%}
+							<option value='{{ department.0 }}' selected>{{ department.0 | title}} </option>
+						{% else %}
+							<option value='{{ department.0 }}'>{{ department.0 | title}} </option>
+						{% endif %}
+
+					{% endfor %}
+				</select>
+
+				<label for="status">Status</label>
+				<select name="status">
+					<option value="all" >All</option>
+					{% for status in statuses %}
+
+						{% if last_selected_status == status%}
+							<option value='{{status}}' selected>{{ status | title}} </option>
+						{% else%}
+							<option value='{{status}}'>{{ status | title}} </option>
+						{% endif %}
+					{% endfor %}
+				</select>
+
+					
+				<label for="start_date">From</label>
+				<input type='date' name='start_date'/>
+
+				<label for="end_date">To</label>
+				<input type='date' name='end_date'/>
+
+                <div class="input-group">
+                    <span><input class="form-control input-sm textinput form-control" id="id_q" maxlength="150" name="q" placeholder="search" type="text" value="{{ q|default:'' }}" /><span>
+                    <span class="input-group-btn">
+						
+                        <button  type="submit" class="btn btn btn-default btn-sm"> Filter
+                            {% comment %} <i class="fa fa-search fa-sm"></i> {% endcomment %}
+                        </button>
+                        {% if listboard_view_filters %}
+	                        <button  type="button" class="btn btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+	                            <span class="text {% if f == 'all' %}text-default{% elif f or e %}text-info{% else %}text-default{% endif %}"><i class="fa fa-filter fa-sm"></i></span>&nbsp;<span class="caret"></span>
+	                        </button>
+	                            <ul class="dropdown-menu pull-right" role="menu">
+	                              {% for listboard_filter in listboard_view_filters %}
+	                                <li>
+	                                   <a href="{% url listboard_filter_url %}?{{ listboard_filter.querystring }}">
+	                                       {{ listboard_filter.label }}{% if f == listboard_filter.name or e == listboard_filter.name %}&nbsp;<i class="fa fa-check fa-fw"></i>{% endif %}
+	                                   </a>
+	                                </li>
+	                              {% endfor %}
+	                            </ul>
+	                    {% endif %}
+
+                    </span>
+                </div>
+            </div>
+        </div>
+	    {% if f %}<input type="hidden" name="f" value="{{ f }}">{% endif %}
+	    {% if e %}<input type="hidden" name="e" value="{{ e }}">{% endif %}
+	    {% if o %}<input type="hidden" name="o" value="{{ o }}">{% endif %}
+	</form>    
+</span>

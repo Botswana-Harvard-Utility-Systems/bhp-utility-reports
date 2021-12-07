@@ -1,0 +1,37 @@
+{% extends "edc_dashboard/listboard.html" %} 
+{% load edc_base_extras %} 
+
+
+
+
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th>Employee ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Job Title</th>
+    <th>Department</th>
+    <th>Supervisor</th>
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+
+{% block listboard_table_button_column %}
+
+{% endblock listboard_table_button_column %}
+
+
+
+
+{% block listboard_table_columns %}
+    <td style='text-align: center;'><a href="{% url 'bhp_utility_reports:employee_timesheet_report_listboard_url' %}?q={{ result.email }}" >{{ result.employee_code }}</a></td>
+    <td><a href="{% url 'bhp_utility_reports:employee_timesheet_report_listboard_url' %}?q={{ result.email }}">{{ result.first_name }}</a></td>
+    <td><a href="{% url 'bhp_utility_reports:employee_timesheet_report_listboard_url' %}?q={{ result.email }}">{{ result.last_name }}</a></td>
+    <td>{{ result.job_title | title }}</td>
+    <td>{{ result.department | title }}</td>
+    <td>{{ result.supervisor }} </td>
+
+
+{% endblock listboard_table_columns %}
+

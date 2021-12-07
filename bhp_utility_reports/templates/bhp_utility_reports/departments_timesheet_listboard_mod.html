@@ -1,0 +1,49 @@
+{% extends "edc_dashboard/listboard.html" %} 
+{% load edc_base_extras %} 
+{% load %}
+
+{% block listboard_search_form %}
+        {% include './components/header_form.html' %}
+{% endblock listboard_search_form %}
+
+
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Department</th>
+    <th>Status</th>
+    <th>Date Submitted</th>
+    <th style="text-align: left;">Overtime</th>
+    <th>Annual Leave Taken</th>
+    <th>Sick Leave Taken</th>
+    <th>Study Leave Taken</th>
+    <th>Compasionate Leave Taken</th>
+    <th>Maternity Leave Taken</th>
+    <th>Paternity Leave Taken</th>
+
+
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+{% block listboard_table_columns %}
+    <td>{{ result.first_name }}</td>
+    <td>{{ result.last_name  }}</td>
+    <td>{{ result.department_name }}</td>
+    <td>{{ result.status | title }} </td>
+    <td>{{ result.date_submitted  }}</td>
+    <td style='text-align: center;'>{{ result.overtime }}</td>
+    <td style='text-align: center;'>{{ result.annual_leave_taken }}</td>
+    <td style='text-align: center;'>{{ result.sick_leave_taken }}</td>
+    <td style='text-align: center;'>{{ result.study_leave_taken }}</td>
+    <td style='text-align: center;'>{{ result.compassionate_leave_taken }}</td>
+    <td style='text-align: center;'>{{ result.maternity_leave_taken }}</td>
+    <td style='text-align: center;'>{{ result.sick_leave_taken }}</td>
+{% endblock listboard_table_columns %}
+
+{% block listboard_table_button_column %}{% endblock listboard_table_button_column %}
+
+
+{% comment %}  {% endcomment %}
+
