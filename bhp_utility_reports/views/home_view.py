@@ -12,8 +12,8 @@ from django.core.paginator import Paginator
 
 class HomeView(NavbarViewMixin, EdcBaseViewMixin, TemplateView):
     template_name = 'bhp_utility_reports/home.html'
-    navbar_selected_item = 'Reports'
     navbar_name = 'bhp_utility_reports'
+    navbar_selected_item = 'Reports'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
