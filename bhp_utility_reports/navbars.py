@@ -4,7 +4,7 @@ from edc_navbar import NavbarItem, site_navbars, Navbar
 
 bhp_utility_navbar = Navbar(name='bhp_utility_reports')
 
-no_url_namespace = True if settings.APP_NAME == 'bhp_utility_reports' else False
+# no_url_namespace = True if settings.APP_NAME == 'bhp_utility_reports' else False
 
 bhp_utility_navbar.append_item(
     NavbarItem(name='reports',
