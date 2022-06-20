@@ -1,0 +1,3 @@
+include AUTHORS CHANGES README.md LICENCE
+recursive-include bhp_utility_reports/templates *
+recursive-include bhp_utility_reports/static *
